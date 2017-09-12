@@ -52,7 +52,7 @@ addresses_to_redirect = [re.compile(re.escape(x.lower()), re.IGNORECASE) for x i
   '0x39c6e46623e7a57cf1daac1cc2ba56f26a8d32fd'
 ]]
 
-logfile = open('remove_mining_fees_log.txt', 'w', 0)
+#logfile = open('remove_mining_fees_log.txt', 'w', 0)
 
 def callback(arg1, payload):
   data = payload.get_data()
@@ -76,11 +76,12 @@ def callback(arg1, payload):
   del pkt[IP].chksum
   del pkt[TCP].chksum
   payload.set_verdict_modified(nfqueue.NF_ACCEPT, str(pkt), len(pkt))
-  logfile.write(payload_text)
-  logfile.write('\n')
-  logfile.flush()
+  #logfile.write(payload_text)
+  #logfile.write('\n')
+  #logfile.flush()
 
 def main():
+  print "umine.io helper running..."
   q = nfqueue.queue()
   q.open()
   q.bind(socket.AF_INET)
